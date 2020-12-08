@@ -4,7 +4,7 @@
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-	let list = include_str!("../input.txt")
+	let list = include_str!("input.txt")
 		.lines()
 		.map(str::parse)
 		.collect(): Result<Vec<i32>, _>;

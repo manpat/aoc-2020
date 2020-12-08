@@ -1,10 +1,12 @@
 #![deny(rust_2018_idioms, future_incompatible)]
 #![feature(type_ascription, str_split_once)]
 
+
+
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-	let list = include_str!("../input.txt")
+	let list = include_str!("input.txt")
 		.lines()
 		.map(parse_database_entry)
 		.collect(): Result<Vec<_>, _>;

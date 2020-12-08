@@ -1,5 +1,2 @@
-target/
-
-*.sublime-workspace
-*.sublime-project
+/target
 Cargo.lock
