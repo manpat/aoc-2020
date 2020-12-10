@@ -30,22 +30,20 @@ fn questions_answered_by_group(group_str: &str) -> usize {
 
 
 fn common_questions_answered_by_group(group_str: &str) -> usize {
-	use std::collections::HashMap;
-
-	let mut question_counts = HashMap::new();
+	let mut question_counts = [0; 26];
 
 	for person in group_str.lines() {
 		for ch in person.chars()
 			.filter(char::is_ascii_alphabetic)
 		{
-			let entry = question_counts.entry(ch).or_insert(0);
-			*entry += 1;
+			let index = ch.to_ascii_lowercase() as usize - 'a' as usize;
+			question_counts[index] += 1;
 		}
 	}
 
 	let people_in_group = group_str.lines().count();
 
-	question_counts.values()
+	question_counts.iter()
 		.filter(|&&occurances| occurances == people_in_group)
 		.count()
 }
