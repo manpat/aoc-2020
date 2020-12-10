@@ -11,14 +11,14 @@ fn main() {
 		.collect(): Vec<_>;
 
 	let part_1 = data.iter()
-		.map(|pass| part_1_valid(pass) as usize)
-		.sum(): usize;
+		.filter(|p| part_1_valid(p))
+		.count();
 
 	dbg!(part_1);
 
 	let part_2 = data.iter()
-		.map(|pass| part_2_valid(pass) as usize)
-		.sum(): usize;
+		.filter(|p| part_2_valid(p))
+		.count();
 
 	dbg!(part_2);
 }
@@ -127,13 +127,10 @@ fn validate_passport_id(id_str: &str) -> bool {
 
 
 fn part_2_valid(passport: &Passport) -> bool {
-	if !part_1_valid(passport) {
-		return false
-	}
-
 	let Passport(fields) = passport;
 
-	validate_year(&fields[&Field::BirthYear], 1920, 2002)
+	part_1_valid(passport)
+	&& validate_year(&fields[&Field::BirthYear], 1920, 2002)
 	&& validate_year(&fields[&Field::IssueYear], 2010, 2020)
 	&& validate_year(&fields[&Field::ExpirationYear], 2020, 2030)
 	&& validate_height(&fields[&Field::Height])
