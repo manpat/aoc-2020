@@ -112,8 +112,6 @@ fn validate_height(height_str: &str) -> bool {
 }
 
 fn validate_hair_color(col_str: &str) -> bool {
-	if !col_str.starts_with('#') { return false }
-
 	col_str.starts_with('#')
 		&& col_str[1..].chars().all(|c| c.is_ascii_hexdigit())
 }
